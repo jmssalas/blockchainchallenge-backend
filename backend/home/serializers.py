@@ -8,4 +8,4 @@ class UserHomeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'tracks']
+        fields = ['tracks']

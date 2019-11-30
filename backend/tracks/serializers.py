@@ -9,6 +9,19 @@ class TrackStateSerializer(serializers.ModelSerializer):
 
 
 class TrackSerializer(serializers.ModelSerializer):
+    currentState = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Track
+        fields = ['id', 'ticketCode', 'trashType', 'currentState']
+
+
+    def get_currentState(self, instance):
+        state = instance.states.last()
+        return TrackStateSerializer(state).data
+
+
+class TrackSerializerDetail(serializers.ModelSerializer):
     states = TrackStateSerializer(many=True, read_only=True)
 
     class Meta:
