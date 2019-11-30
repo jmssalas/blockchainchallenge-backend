@@ -8,5 +8,5 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path(API_V1 + 'auth/', obtain_jwt_token),
+    path(API_V1 + 'auth/login', obtain_jwt_token),
 ]

@@ -1,8 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
-class User(User):
+class User(AbstractUser):
+    pass
     code = models.CharField(max_length=1000, blank=True, default='')
 
     def __str__(self):
