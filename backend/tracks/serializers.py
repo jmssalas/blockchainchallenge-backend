@@ -12,7 +12,8 @@ class TrackStateSerializer(serializers.ModelSerializer):
 
 class TrackSerializer(serializers.ModelSerializer):
     states = serializers.PrimaryKeyRelatedField(many=True, queryset=TrackState.objects.all())
+    user = serializers.ReadOnlyField(source='user.username')
 
     class Meta:
         model = Track
-        fields = ['id', 'ticketCode', 'states']
+        fields = ['id', 'ticketCode', 'states', 'user']
