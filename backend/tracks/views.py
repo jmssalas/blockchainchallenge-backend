@@ -17,8 +17,9 @@ class CreateTrack(APIView):
         user = request.user
         serializer = CreateTrackSerializer(data=request.data)
         if serializer.is_valid():
-            if validate_codes.validate(serializer.data['ticketCode']):
-                track = Track(ticketCode=serializer.data['ticketCode'], user=user)
+            ticket_code = serializer.data['ticketCode']
+            if validate_codes.validate(ticket_code):
+                track = Track(ticketCode=ticket_code, trashType=validate_codes.trash_type(ticket_code), user=user)
                 track.save()
                 track_state = TrackStates(track=track, state=states.TRACK_STATE_ID[states.SCANNED])
                 track_state.save()

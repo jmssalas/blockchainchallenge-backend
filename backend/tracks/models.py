@@ -5,6 +5,7 @@ from users.models import User
 class Track(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     ticketCode = models.CharField(max_length=1000)
+    trashType = models.IntegerField()
 
     user = models.ForeignKey(User, related_name='tracks', on_delete=models.CASCADE)
 
@@ -14,7 +15,7 @@ class Track(models.Model):
 
 class TrackStates(models.Model):
     state = models.IntegerField()
-    timestamp = models.DateField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     track = models.ForeignKey(Track, related_name='states', on_delete=models.CASCADE)
 

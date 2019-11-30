@@ -3,19 +3,17 @@ from tracks.models import Track, TrackStates
 
 
 class TrackStateSerializer(serializers.ModelSerializer):
-    track = serializers.ReadOnlyField(source='track.ticketCode')
-
     class Meta:
         model = TrackStates
-        fields = ['id', 'state', 'timestamp', 'track']
+        fields = ['id', 'state', 'timestamp']
 
 
 class TrackSerializer(serializers.ModelSerializer):
-    states = serializers.PrimaryKeyRelatedField(many=True, queryset=TrackStates.objects.all())
+    states = TrackStateSerializer(many=True, read_only=True)
 
     class Meta:
         model = Track
-        fields = ['id', 'ticketCode', 'states']
+        fields = ['id', 'ticketCode', 'trashType', 'states']
 
 
 class CreateTrackSerializer(serializers.Serializer):
