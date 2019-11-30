@@ -25,6 +25,12 @@ class UpdateUserCode(APIView):
             if validate_codes.validate(serializer.data['code']):
                 user.code = serializer.data['code']
                 user.save()
-                return Response()
-            return Response({'error': 'Codi invàlid'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'success': True,
+                             'message': 'Codi actualitzat',
+                             'data': None})
+            return Response({'success': False,
+                             'message': 'Codi invàlid',
+                             'data': None}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success': False,
+                             'message': 'Request errors',
+                             'data': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
