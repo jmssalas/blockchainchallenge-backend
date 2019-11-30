@@ -1,5 +1,5 @@
 from django.urls import path, include
-from rest_framework_jwt.views import obtain_jwt_token
+from login.views import LoginView
 
 API_V1 = 'api/v1/'
 
@@ -8,5 +8,5 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    path(API_V1 + 'auth/login', obtain_jwt_token),
+    path(API_V1 + 'auth/login', LoginView.as_view()),
 ]
