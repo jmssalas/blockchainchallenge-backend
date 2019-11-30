@@ -18,7 +18,7 @@ class UserCreate(generics.CreateAPIView):
 class UpdateUserCode(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def put(self, request, format=None):
+    def post(self, request, format=None):
         user = request.user
         serializer = UserCodeSerializer(data=request.data)
         if serializer.is_valid():
