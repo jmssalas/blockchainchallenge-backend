@@ -6,6 +6,7 @@ class Track(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     ticketCode = models.CharField(max_length=1000)
     trashType = models.IntegerField()
+    points = models.IntegerField(default=0)
 
     user = models.ForeignKey(User, related_name='tracks', on_delete=models.CASCADE)
 

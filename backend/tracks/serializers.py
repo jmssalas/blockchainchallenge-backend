@@ -13,7 +13,7 @@ class TrackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Track
-        fields = ['id', 'ticketCode', 'trashType', 'currentState']
+        fields = ['id', 'trashType', 'currentState', 'points']
 
 
     def get_currentState(self, instance):
