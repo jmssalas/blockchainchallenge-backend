@@ -5,6 +5,7 @@ API_V1 = 'api/v1/'
 
 urlpatterns = [
     path(API_V1, include('users.urls')),
+    path(API_V1, include('tracks.urls')),
 ]
 
 urlpatterns += [
