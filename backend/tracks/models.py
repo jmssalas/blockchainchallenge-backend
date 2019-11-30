@@ -11,7 +11,7 @@ class Track(models.Model):
     user = models.ForeignKey(User, related_name='tracks', on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
 
 
 class TrackStates(models.Model):
