@@ -21,12 +21,12 @@ class TrackSerializer(serializers.ModelSerializer):
         return TrackStateSerializer(state).data
 
 
-class TrackSerializerDetail(serializers.ModelSerializer):
+class TrackDetailSerializer(serializers.ModelSerializer):
     states = TrackStateSerializer(many=True, read_only=True)
 
     class Meta:
         model = Track
-        fields = ['id', 'ticketCode', 'trashType', 'states']
+        fields = ['id', 'trashType', 'states']
 
 
 class CreateTrackSerializer(serializers.Serializer):
