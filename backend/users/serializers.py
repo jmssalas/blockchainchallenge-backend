@@ -18,3 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.is_active = True
         user.save()
         return user
+
+
+class UserCodeSerializer(serializers.Serializer):
+    code = serializers.CharField(max_length=1000)
