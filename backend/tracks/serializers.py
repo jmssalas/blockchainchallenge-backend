@@ -29,5 +29,5 @@ class TrackDetailSerializer(serializers.ModelSerializer):
         fields = ['id', 'trashType', 'states']
 
 
-class CreateTrackSerializer(serializers.Serializer):
+class TicketCodeSerializer(serializers.Serializer):
     ticketCode = serializers.CharField(max_length=1000)
