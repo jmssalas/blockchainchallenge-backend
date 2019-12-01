@@ -14,6 +14,8 @@ import eth.utils as eth
 
 import hashlib
 
+from backend.settings import RECYCLED_POINTS
+
 
 class CreateTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -36,7 +38,7 @@ class CreateTrack(APIView):
                     track_state.save()
 
                     hash = hash_track(track.id, track_state.state, track_state.timestamp)
-                    eth.sendTrack(hash)
+                    print(eth.sendTrack(hash))
 
                     return Response({'success': True,
                                      'message': 'Track escanejat',
@@ -83,6 +85,15 @@ class UpdateTrackState(APIView):
                 state = path_to_state(path)
                 track_state = TrackStates(track=track, state=state)
                 track_state.save()
+
+                hash = hash_track(track.id, track_state.state, track_state.timestamp)
+                print(eth.sendTrack(hash))
+
+                if track_state.state == states.TRACK_STATE_ID[states.RECYCLED]:
+                    track.points = RECYCLED_POINTS
+                    track.save()
+                    print(eth.sendPoints(track.user.address, track.points))
+
                 return Response({'success': True,
                                  'message': 'Track actualitzat',
                                  'data': None})

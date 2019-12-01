@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'users.User'
 
+RECYCLED_POINTS = 300
+
 # Application definition
 
 INSTALLED_APPS = [
