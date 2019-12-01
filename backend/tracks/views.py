@@ -32,7 +32,7 @@ class CreateTrack(APIView):
                         track_state = TrackStates(track=track, state=states.TRACK_STATE_ID[states.SCANNED])
                         track_state.save()
                         return Response({'success': True,
-                                     'message': 'Trash scanned',
+                                     'message': 'Track escanejat',
                                      'data': None})
             return Response({'success': False,
                              'message': 'Codi invàlid',
@@ -55,19 +55,24 @@ class TrackDetail(APIView):
         return Response(serializer.data)
 
 
-class ContainerTrack(APIView):
+def path_to_state(path):
+    return states.TRACK_STATE_ID[path.upper()]
+
+
+class UpdateTrackState(APIView):
     permission_classes = [permissions.AllowAny]
 
-    def post(self, request, format=None):
+    def post(self, request, path, format=None):
         serializer = TicketCodeSerializer(data=request.data)
         if serializer.is_valid():
             ticket_code = serializer.data['ticketCode']
             try:
                 track = Track.objects.get(ticketCode=ticket_code)
-                track_state = TrackStates(track=track, state=states.TRACK_STATE_ID[states.IN_CONTAINER])
+                state = path_to_state(path)
+                track_state = TrackStates(track=track, state=state)
                 track_state.save()
                 return Response({'success': True,
-                                 'message': 'Track updated',
+                                 'message': 'Track actualitzat',
                                  'data': None})
             except Track.DoesNotExist:
                 return Response({'success': False,
