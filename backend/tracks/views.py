@@ -94,7 +94,7 @@ class UpdateTrackState(APIView):
                 if track_state.state == states.TRACK_STATE_ID[states.RECYCLED]:
                     track.points = RECYCLED_POINTS
                     track.save()
-                    print(eth.sendPoints(track.user.address, track.points))
+                    # TODO print(eth.sendPoints(track.user.address, track.points))
 
                 return Response({'success': True,
                                  'message': 'Track actualitzat',
