@@ -1,3 +1,5 @@
+import hashlib
+
 from eth import settings
 from eth_account import Account
 
