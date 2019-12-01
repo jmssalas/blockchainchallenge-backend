@@ -38,7 +38,6 @@ class CreateTrack(APIView):
                     track_state.save()
 
                     hash = hash_track(track.id, track_state.state, track_state.timestamp)
-                    print(hash)
                     print(eth.sendTrack(hash))
 
                     return Response({'success': True,
@@ -88,7 +87,6 @@ class UpdateTrackState(APIView):
                 track_state.save()
 
                 hash = hash_track(track.id, track_state.state, track_state.timestamp)
-                print(hash)
                 print(eth.sendTrack(hash))
 
                 if track_state.state == states.TRACK_STATE_ID[states.RECYCLED]:
