@@ -1,3 +1,5 @@
+from time import strftime
+
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -69,7 +71,7 @@ def path_to_state(path):
 
 
 def hash_track(trackId, state, timestamp):
-    concat = "{}_{}_{}".format(trackId, state, timestamp).encode('utf-8')
+    concat = "{}_{}_{}".format(trackId, state, timestamp.strftime("%Y-%m-%dT%H:%M:%S.%fZ")).encode()
     return '0x' + hashlib.md5(concat).hexdigest()
 
 
