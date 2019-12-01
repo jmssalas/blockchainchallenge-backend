@@ -20,10 +20,10 @@ SPONSOR_PRIVATE_KEY = "8817d07a37f88dc9a0eff864e7ee8c926aa9105363f65afba1a388253
 
 W3 = Web3(HTTPProvider(INFURA_URL))
 
-with open(os.path.join(BASE_DIR, 'circletoken_abi.json')) as f:
+with open(os.path.join(BASE_DIR, 'eth/circletoken_abi.json')) as f:
     abi = json.load(f)
     CIRCLE_TOKEN_CONTRACT = W3.eth.contract(address=TOKEN_ADDRESS, abi=abi)
 
-with open(os.path.join(BASE_DIR, "track_abi.json")) as f:
+with open(os.path.join(BASE_DIR, "eth/track_abi.json")) as f:
     abi = json.load(f)
     TRACK_CONTRACT = W3.eth.contract(address=TRACK_ADDRESS, abi=abi)

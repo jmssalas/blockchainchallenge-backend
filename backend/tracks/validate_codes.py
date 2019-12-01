@@ -1,5 +1,9 @@
-VALID_CODES = ['ORG0001', 'ENV001', 'PAP001', 'RES001', 'VID001']
-CODE_TRASH_TYPE = {'ORG0001': 1, 'ENV001': 2, 'PAP001': 3, 'RES001': 4, 'VID001': 5}
+VALID_CODES = [
+    'ORG001', 'ORG002', 'ORG003', 'ORG004',
+    'ENV001', 'ENV002', 'ENV003', 'ENV004',
+    'PAP001', 'PAP002', 'PAP003', 'PAP004',
+    'RES001', 'RES002', 'RES003', 'RES004',
+    'VID001', 'VID002', 'VID003', 'VID004']
 
 
 def validate(code):
@@ -7,4 +11,16 @@ def validate(code):
 
 
 def trash_type(code):
-    return CODE_TRASH_TYPE[code]
+    if 'ORG' in code:
+        return 1
+    if 'ENV' in code:
+        return 2
+    if 'PAP' in code:
+        return 3
+    if 'RES' in code:
+        return 4
+    if 'VID' in code:
+        return 5
+
+
+
