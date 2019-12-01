@@ -38,6 +38,7 @@ class CreateTrack(APIView):
                     track_state.save()
 
                     hash = hash_track(track.id, track_state.state, track_state.timestamp)
+                    print(hash)
                     print(eth.sendTrack(hash))
 
                     return Response({'success': True,
@@ -70,7 +71,7 @@ def path_to_state(path):
 
 def hash_track(trackId, state, timestamp):
     concat = "{}_{}_{}".format(trackId, state, timestamp).encode('utf-8')
-    return hashlib.md5(concat).hexdigest()
+    return '0x' + hashlib.md5(concat).hexdigest()
 
 
 class UpdateTrackState(APIView):
@@ -87,6 +88,7 @@ class UpdateTrackState(APIView):
                 track_state.save()
 
                 hash = hash_track(track.id, track_state.state, track_state.timestamp)
+                print(hash)
                 print(eth.sendTrack(hash))
 
                 if track_state.state == states.TRACK_STATE_ID[states.RECYCLED]:
